@@ -1,0 +1,9 @@
+{
+  "package": "org.teamvoided.scuffedlib.mixin",
+  "client": [
+    "MixinTexturedRenderLayers"
+  ],
+  "mixins": [
+    "MixinBlockEntityType"
+  ]
+}

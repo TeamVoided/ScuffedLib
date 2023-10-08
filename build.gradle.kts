@@ -1,4 +1,5 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
+import org.teamvoided.iridium.config.Config
 
 plugins {
     kotlin("jvm") version "1.9.0"
@@ -10,20 +11,25 @@ plugins {
 group = project.properties["maven_group"]!!
 version = project.properties["mod_version"]!!
 base.archivesName.set(project.properties["archives_base_name"] as String)
-description = "TeamVoided Template Mod"
+description = "Scuffy"
 
 repositories {
     mavenCentral()
+        maven { url = uri("https://jitpack.io") }
 }
 
 modSettings {
     modId(base.archivesName.get())
-    modName("Team Voided Template Mod")
+    modName("ScuffedLib")
 
-    entrypoint("main", "org.teamvoided.templatemod.TemplateMod::commonInit")
-    entrypoint("client", "org.teamvoided.templatemod.TemplateMod::clientInit")
-
+    entrypoint("main", "org.teamvoided.scuffedlib.ScuffedLib::commonInit")
+    entrypoint("client", "org.teamvoided.scuffedlib.ScuffedLib::clientInit")
+    mixinFile("scuffedlib.mixins.json")
     isModParent(true)
+}
+
+dependencies {
+    mappings("org.quiltmc:quilt-mappings:${Config.mappings.version}:intermediary-v2")
 }
 
 tasks {
